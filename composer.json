@@ -1,0 +1,39 @@
+{
+    "name": "steveporter92/laravel-mongodb-passport",
+    "description": "A package to allow laravel/passport use with jenssegers/laravel-mongodb",
+    "homepage": "https://github.com/steveporter92/laravel-mongodb-passport",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "laravel-mongodb",
+        "laravel-mongodb-passport",
+        "laravel-passport",
+        "mongodb",
+        "passport",
+        "steveporter92"
+    ],
+    "require": {
+        "illuminate/support": "^5.5",
+        "jenssegers/mongodb": "3.3.*",
+        "laravel/passport": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "StevePorter92\\Mongodb\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Steve Porter",
+            "email": "steve@the-porters.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "StevePorter92\\Mongodb\\MongodbPassportServiceProvider"
+            ]
+        }
+    }
+}
