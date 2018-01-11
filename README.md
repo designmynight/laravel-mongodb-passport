@@ -14,13 +14,13 @@ Installation
 
 Installation using composer:
 
-```
+```sh
 composer require designmynight/laravel-mongodb-passport
 ```
 
 You need to have your `App\User` class extend `DesignMyNight\Mongodb\Auth\User.php` instead of the default `Illuminate\Foundation\Auth\User`. This user class extends larvel-mongodb eloquent user as well as adding all the standard and required authentication and laravel passport traits.
 
-```
+```php
 <?php
 
 namespace App;
