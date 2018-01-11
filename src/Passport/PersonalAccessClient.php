@@ -1,6 +1,6 @@
 <?php
 
-namespace StevePorter92\Mongodb\Passport;
+namespace DesignMyNight\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
