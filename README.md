@@ -18,6 +18,22 @@ Installation using composer:
 composer require steveporter92/laravel-mongodb-passport
 ```
 
+You need to have your `App\User` class extend `StevePorter92\Mongodb\Auth\User.php` instead of the default `Illuminate\Foundation\Auth\User`. This user class extends larvel-mongodb eloquent user as well as adding all the standard and required authentication and laravel passport traits.
+
+```
+<?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use StevePorter92\Mongodb\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+}
+```
+
 ### Laravel version Compatibility
 
  Laravel  | Package
