@@ -38,7 +38,8 @@ class User extends Authenticatable
 
  Laravel  | Package
 :---------|:----------
- 5.5.x    | 1.0.x
+ 5.5.x    | 1.1.x
+ 5.6.x    | 1.1.x
 
 And add the service provider in `config/app.php`:
 
