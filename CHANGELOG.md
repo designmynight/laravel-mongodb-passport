@@ -3,7 +3,7 @@
 All notable changes to `laravel-mongodb-passport` will be documented in this file
 
 ## 1.1.3 - 2018-04-24
-- fix support for laravel-framework 5.6, laravel-passport 5, laravel-mongodb 3.4
+- add support for passport 6
 
 ## 1.1.2 - 2018-03-22
 - fix support for laravel-framework 5.6, laravel-passport 5, laravel-mongodb 3.4
