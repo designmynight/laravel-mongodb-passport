@@ -1,6 +1,6 @@
 {
     "name": "designmynight/laravel-mongodb-passport",
-    "version": "1.2.0",
+    "version": "1.2.4",
     "description": "A package to allow laravel/passport use with jenssegers/laravel-mongodb",
     "homepage": "https://github.com/designmynight/laravel-mongodb-passport",
     "license": "MIT",
