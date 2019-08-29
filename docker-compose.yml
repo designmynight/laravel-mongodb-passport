@@ -1,0 +1,10 @@
+version: '3'
+services:
+  composer:
+    build:
+      context: .
+      dockerfile: Dockerfile.composer
+    command: composer -o install
+    volumes:
+      - .:/opt
+    working_dir: /opt
