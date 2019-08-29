@@ -16,8 +16,7 @@
     "require": {
         "illuminate/support": "^5.5",
         "jenssegers/mongodb": "3.3.* || 3.4.* || 3.5.*",
-        "laravel/passport": "7.4.2",
-        "laravel/laravel": "5.*"
+        "laravel/passport": "7.4.2"
     },
     "autoload": {
         "psr-4": {
