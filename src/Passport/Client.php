@@ -78,5 +78,15 @@ class Client extends Model
     public function skipsAuthorization()
     {
         return false;
-    } 
+    }
+    
+    /**
+     * Determine if the client is a confidential client.
+     *
+     * @return bool
+     */
+    public function confidential()
+    {
+        return ! empty($this->secret);
+    }
 }
