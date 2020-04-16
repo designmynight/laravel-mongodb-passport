@@ -46,4 +46,9 @@ class RefreshToken extends Model implements RefreshTokenEntityInterface
      * @var string
      */
     protected $table = 'oauth_refresh_tokens';
+
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
 }
