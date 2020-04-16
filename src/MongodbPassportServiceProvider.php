@@ -2,6 +2,7 @@
 
 namespace DesignMyNight\Mongodb;
 
+use DesignMyNight\Mongodb\Passport\Bridge\RefreshToken;
 use DesignMyNight\Mongodb\Passport\Bridge\RefreshTokenRepository as BridgeRefreshTokenRepository;
 use DesignMyNight\Mongodb\Passport\RefreshTokenRepository;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ class MongodbPassportServiceProvider extends ServiceProvider
     /** @var array */
     private $aliases = [
         'Laravel\Passport\AuthCode' => AuthCode::class,
+        'Laravel\Passport\Bridge\RefreshToken' => RefreshToken::class,
         'Laravel\Passport\Bridge\RefreshTokenRepository' => BridgeRefreshTokenRepository::class,
         'Laravel\Passport\Client' => Client::class,
         'Laravel\Passport\PersonalAccessClient' => PersonalAccessClient::class,
