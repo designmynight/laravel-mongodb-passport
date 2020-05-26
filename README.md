@@ -36,11 +36,11 @@ class User extends Authenticatable
 
 ### Laravel version Compatibility
 
- Laravel  | Passport                   | Package
-:---------|:---------------------------|:----------
- 5.5.x    | 4.0.x, 5.0.x, 6.0.x, 7.0.x | 1.1.x
- 5.6.x    | 4.0.x, 5.0.x, 6.0.x, 7.0.x | 1.1.x
- 6.x      | 4.0.x, 5.0.x, 6.0.x, 7.x   | 1.2.x
+ Laravel  | Passport                     | Package
+:---------|:-----------------------------|:----------
+ 5.5.x    | 4.0.x, 5.0.x, 6.0.x, 7.0.x   | 1.1.x
+ 5.6.x    | 4.0.x, 5.0.x, 6.0.x, 7.0.x   | 1.1.x
+ 6.x      | 4.0.x, 5.0.x, 6.0.x, 7.x, 8.x| 1.2.x
   
 And add the service provider in `config/app.php`:
 
