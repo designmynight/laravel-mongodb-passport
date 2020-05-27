@@ -4,31 +4,28 @@ namespace DesignMyNight\Mongodb;
 
 use Illuminate\Support\ServiceProvider;
 use DesignMyNight\Mongodb\Passport\AuthCode;
+use DesignMyNight\Mongodb\Passport\Bridge\RefreshTokenRepository;
 use DesignMyNight\Mongodb\Passport\Client;
 use DesignMyNight\Mongodb\Passport\PersonalAccessClient;
 use DesignMyNight\Mongodb\Passport\RefreshToken;
 use DesignMyNight\Mongodb\Passport\Token;
+use Laravel\Passport\Bridge\RefreshTokenRepository as PassportRefreshTokenRepository;
+use Laravel\Passport\Passport;
 
 class MongodbPassportServiceProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     */
     public function register()
     {
-        /*
-         * Passport client extends Eloquent model by default, so we alias them.
-         */
-        if (class_exists('Illuminate\Foundation\AliasLoader')) {
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('Laravel\Passport\AuthCode', AuthCode::class);
-            $loader->alias('Laravel\Passport\Client', Client::class);
-            $loader->alias('Laravel\Passport\PersonalAccessClient', PersonalAccessClient::class);
-            $loader->alias('Laravel\Passport\Token', Token::class);
-            $loader->alias('Laravel\Passport\RefreshToken', RefreshToken::class);
-        } else {
-            class_alias('Laravel\Passport\AuthCode', AuthCode::class);
-            class_alias('Laravel\Passport\Client', Client::class);
-            class_alias('Laravel\Passport\PersonalAccessClient', PersonalAccessClient::class);
-            class_alias('Laravel\Passport\Token', Token::class);
-            class_alias('Laravel\Passport\RefreshToken', RefreshToken::class);
-        }
+        Passport::useAuthCodeModel(AuthCode::class);
+        Passport::useClientModel(Client::class);
+        Passport::usePersonalAccessClientModel(PersonalAccessClient::class);
+        Passport::useTokenModel(Token::class);
+
+        $this->app->bind(PassportRefreshTokenRepository::class, function () {
+            return $this->app->make(RefreshTokenRepository::class);
+        });
     }
 }
