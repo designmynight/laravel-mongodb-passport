@@ -79,7 +79,7 @@ class Client extends Model
     {
         return false;
     }
-    
+
     /**
      * Determine if the client is a confidential client.
      *
