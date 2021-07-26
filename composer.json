@@ -14,8 +14,8 @@
     ],
     "require": {
         "php": ">=7.1",
-        "illuminate/support": "^5.5 || ^6.9",
-        "jenssegers/mongodb": "3.3.* || 3.4.* || 3.5.* || 3.6.*",
+        "illuminate/support": "^5.5 || ^6.9 || ^7.0",
+        "jenssegers/mongodb": "3.3.* || 3.4.* || 3.5.* || 3.6.* || 4.*",
         "laravel/passport": "6.0.* || 7.0.* || 7.4.* || 7.5.* || ^8.0 || ^9.0"
     },
     "autoload": {
