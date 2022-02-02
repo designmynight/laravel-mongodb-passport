@@ -1,8 +1,8 @@
 <?php
 
-namespace DesignMyNight\Mongodb\Console;
+namespace Sysvale\Mongodb\Console;
 
-use DesignMyNight\Mongodb\Passport\Client;
+use Sysvale\Mongodb\Passport\Client;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Console\ClientCommand as PassportClientCommand;
 
