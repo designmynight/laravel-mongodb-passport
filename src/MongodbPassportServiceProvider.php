@@ -1,14 +1,14 @@
 <?php
 
-namespace DesignMyNight\Mongodb;
+namespace Sysvale\Mongodb;
 
 use Illuminate\Support\ServiceProvider;
-use DesignMyNight\Mongodb\Passport\AuthCode;
-use DesignMyNight\Mongodb\Console\ClientCommand;
-use DesignMyNight\Mongodb\Passport\Bridge\RefreshTokenRepository;
-use DesignMyNight\Mongodb\Passport\Client;
-use DesignMyNight\Mongodb\Passport\PersonalAccessClient;
-use DesignMyNight\Mongodb\Passport\Token;
+use Sysvale\Mongodb\Passport\AuthCode;
+use Sysvale\Mongodb\Console\ClientCommand;
+use Sysvale\Mongodb\Passport\Bridge\RefreshTokenRepository;
+use Sysvale\Mongodb\Passport\Client;
+use Sysvale\Mongodb\Passport\PersonalAccessClient;
+use Sysvale\Mongodb\Passport\Token;
 use Laravel\Passport\Bridge\RefreshTokenRepository as PassportRefreshTokenRepository;
 use Laravel\Passport\Console\ClientCommand as PassportClientCommand;
 use Laravel\Passport\Passport;
