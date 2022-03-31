@@ -12,6 +12,8 @@ use Sysvale\Mongodb\Passport\Token;
 use Laravel\Passport\Bridge\RefreshTokenRepository as PassportRefreshTokenRepository;
 use Laravel\Passport\Console\ClientCommand as PassportClientCommand;
 use Laravel\Passport\Passport;
+use Laravel\Passport\TokenRepository as PassportTokenRepository;
+use Sysvale\Mongodb\Passport\TokenRepository;
 
 class MongodbPassportServiceProvider extends ServiceProvider
 {
