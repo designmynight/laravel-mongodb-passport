@@ -1,6 +1,6 @@
 <?php
 
-namespace DesignMyNight\Mongodb\Passport\Bridge;
+namespace Sysvale\Mongodb\Passport\Bridge;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
@@ -9,7 +9,7 @@ use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 
 /**
  * Class RefreshToken
- * @package DesignMyNight\Mongodb\Passport\Bridge
+ * @package Sysvale\Mongodb\Passport\Bridge
  */
 class RefreshToken extends Model implements RefreshTokenEntityInterface
 {
