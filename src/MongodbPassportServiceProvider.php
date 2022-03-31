@@ -32,5 +32,9 @@ class MongodbPassportServiceProvider extends ServiceProvider
         $this->app->extend(PassportClientCommand::class, function () {
             return new ClientCommand();
         });
+
+        $this->app->bind(PassportTokenRepository::class, function () {
+            return $this->app->make(TokenRepository::class);
+        });
     }
 }
