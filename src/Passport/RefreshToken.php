@@ -2,7 +2,7 @@
 
 namespace Sysvale\Mongodb\Passport;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 use Sysvale\Mongodb\Passport\Bridge\RefreshToken as BridgeRefreshToken;
 
 class RefreshToken extends BridgeRefreshToken
