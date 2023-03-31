@@ -11,8 +11,11 @@ use Sysvale\Mongodb\Passport\PersonalAccessClient;
 use Sysvale\Mongodb\Passport\Token;
 use Laravel\Passport\Bridge\RefreshTokenRepository as PassportRefreshTokenRepository;
 use Laravel\Passport\Console\ClientCommand as PassportClientCommand;
+use Laravel\Passport\Console\PurgeCommand as PassportPurgeCommand;
 use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository as PassportTokenRepository;
+use Sysvale\Mongodb\Console\PurgeCommand;
+use Sysvale\Mongodb\Passport\RefreshToken;
 use Sysvale\Mongodb\Passport\TokenRepository;
 
 class MongodbPassportServiceProvider extends ServiceProvider
@@ -26,6 +29,7 @@ class MongodbPassportServiceProvider extends ServiceProvider
         Passport::useClientModel(Client::class);
         Passport::usePersonalAccessClientModel(PersonalAccessClient::class);
         Passport::useTokenModel(Token::class);
+        Passport::useRefreshTokenModel(RefreshToken::class);
 
         $this->app->bind(PassportRefreshTokenRepository::class, function () {
             return $this->app->make(RefreshTokenRepository::class);
@@ -33,6 +37,10 @@ class MongodbPassportServiceProvider extends ServiceProvider
 
         $this->app->extend(PassportClientCommand::class, function () {
             return new ClientCommand();
+        });
+
+        $this->app->extend(PassportPurgeCommand::class, function () {
+            return new PurgeCommand();
         });
 
         $this->app->bind(PassportTokenRepository::class, function () {

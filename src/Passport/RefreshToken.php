@@ -3,8 +3,9 @@
 namespace Sysvale\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Sysvale\Mongodb\Passport\Bridge\RefreshToken as BridgeRefreshToken;
 
-class RefreshToken extends Model
+class RefreshToken extends BridgeRefreshToken
 {
     /**
      * The database table used by the model.
