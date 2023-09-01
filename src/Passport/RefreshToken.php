@@ -1,10 +1,11 @@
-<?php 
+<?php
 
-namespace DesignMyNight\Mongodb\Passport;
+namespace Sysvale\Mongodb\Passport;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
+use Sysvale\Mongodb\Passport\Bridge\RefreshToken as BridgeRefreshToken;
 
-class RefreshToken extends Model
+class RefreshToken extends BridgeRefreshToken
 {
     /**
      * The database table used by the model.

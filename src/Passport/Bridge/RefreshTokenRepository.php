@@ -1,9 +1,10 @@
 <?php
 
-namespace DesignMyNight\Mongodb\Passport\Bridge;
+namespace Sysvale\Mongodb\Passport\Bridge;
 
 use Laravel\Passport\Bridge\RefreshTokenRepository as BaseRefreshTokenRepository;
 use Laravel\Passport\Events\RefreshTokenCreated;
+use Laravel\Passport\Passport;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 
 /**
@@ -17,7 +18,7 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
      */
     public function getNewRefreshToken()
     {
-        return new RefreshToken();
+        return Passport::refreshToken();
     }
 
     /**
