@@ -21,6 +21,13 @@ class Token extends Model
     protected $table = 'oauth_access_tokens';
 
     /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
@@ -71,7 +78,9 @@ class Token extends Model
     {
         $provider = config('auth.guards.api.provider');
 
-        return $this->belongsTo(config('auth.providers.' . $provider . '.model'));
+        $model = config('auth.providers.'.$provider.'.model');
+
+        return $this->belongsTo($model, 'user_id', (new $model)->getKeyName());
     }
 
     /**
@@ -83,8 +92,42 @@ class Token extends Model
      */
     public function can($scope)
     {
-        return in_array('*', $this->scopes) ||
-        array_key_exists($scope, array_flip($this->scopes));
+        if (in_array('*', $this->scopes)) {
+            return true;
+        }
+
+        $scopes = Passport::$withInheritedScopes
+            ? $this->resolveInheritedScopes($scope)
+            : [$scope];
+
+        foreach ($scopes as $scope) {
+            if (array_key_exists($scope, array_flip($this->scopes))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Resolve all possible scopes.
+     *
+     * @param  string  $scope
+     * @return array
+     */
+    protected function resolveInheritedScopes($scope)
+    {
+        $parts = explode(':', $scope);
+
+        $partsCount = count($parts);
+
+        $scopes = [];
+
+        for ($i = 1; $i <= $partsCount; $i++) {
+            $scopes[] = implode(':', array_slice($parts, 0, $i));
+        }
+
+        return $scopes;
     }
 
     /**
@@ -116,5 +159,15 @@ class Token extends Model
     public function transient()
     {
         return false;
+    }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string|null
+     */
+    public function getConnectionName()
+    {
+        return config('passport.storage.database.connection') ?? $this->connection;
     }
 }
