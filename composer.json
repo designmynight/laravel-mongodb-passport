@@ -15,7 +15,7 @@
     "require": {
         "php": ">=7.1",
         "illuminate/support": "^8.0",
-        "mongodb/laravel-mongodb": "^3.8|^4.0",
+        "jenssegers/mongodb": "^3.8|^4.0",
         "laravel/passport": "^10.0"
     },
     "autoload": {
