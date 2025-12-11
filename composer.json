@@ -23,6 +23,11 @@
             "DesignMyNight\\Mongodb\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
     "authors": [
         {
             "name": "DesignMyNight",
@@ -36,5 +41,8 @@
                 "DesignMyNight\\Mongodb\\MongodbPassportServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
     }
 }

@@ -6,8 +6,9 @@ RUN apk add --no-cache libpng libpng-dev && docker-php-ext-install gd && apk del
 
 RUN docker-php-ext-install pcntl
 
-COPY --from=composer:1.6 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
-RUN /usr/bin/composer global require hirak/prestissimo
+RUN composer --version
 
 COPY composer.json /opt
+
