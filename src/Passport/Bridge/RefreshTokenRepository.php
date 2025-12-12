@@ -21,17 +21,6 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function isRefreshTokenRevoked($tokenId)
-    {
-        $refreshToken = $this->database->table('oauth_refresh_tokens')
-            ->where('id', $tokenId)->first();
-
-        return $refreshToken === null || $refreshToken['revoked'];
-    }
-
-    /**
      * @param RefreshToken|RefreshTokenEntityInterface $refreshTokenEntity
      */
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)

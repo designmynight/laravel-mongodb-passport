@@ -24,6 +24,12 @@ class MongodbPassportServiceProvider extends ServiceProvider
         Passport::usePersonalAccessClientModel(PersonalAccessClient::class);
         Passport::useTokenModel(Token::class);
 
+        // Passport 8+ uses useRefreshTokenModel() for refresh token validation
+        // This method doesn't exist in Passport 7, so we check before calling
+        if (method_exists(Passport::class, 'useRefreshTokenModel')) {
+            Passport::useRefreshTokenModel(RefreshToken::class);
+        }
+
         $this->app->bind(PassportRefreshTokenRepository::class, function () {
             return $this->app->make(RefreshTokenRepository::class);
         });
