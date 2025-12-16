@@ -2,6 +2,7 @@
 
 namespace DesignMyNight\Mongodb\Passport;
 
+use Illuminate\Support\Facades\Config;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Laravel\Passport\Passport;
 
@@ -12,7 +13,7 @@ class Token extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = '_id';
 
     /**
      * The database table used by the model.
@@ -78,9 +79,9 @@ class Token extends Model
      */
     public function user()
     {
-        $provider = config('auth.guards.api.provider');
+        $provider = Config::get('auth.guards.api.provider');
 
-        $model = config('auth.providers.'.$provider.'.model');
+        $model = Config::get('auth.providers.'.$provider.'.model');
 
         return $this->belongsTo($model, 'user_id', (new $model)->getKeyName());
     }
@@ -170,6 +171,6 @@ class Token extends Model
      */
     public function getConnectionName()
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return Config::get('passport.storage.database.connection') ?? $this->connection;
     }
 }

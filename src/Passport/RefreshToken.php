@@ -2,6 +2,7 @@
 
 namespace DesignMyNight\Mongodb\Passport;
 
+use Illuminate\Support\Facades\Config;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Laravel\Passport\Passport;
 
@@ -12,7 +13,7 @@ class RefreshToken extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = '_id';
 
     /**
      * The database table used by the model.
@@ -104,6 +105,6 @@ class RefreshToken extends Model
      */
     public function getConnectionName()
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return Config::get('passport.storage.database.connection') ?? $this->connection;
     }
 }

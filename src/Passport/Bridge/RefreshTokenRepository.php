@@ -26,7 +26,7 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
      */
     public function isRefreshTokenRevoked($tokenId)
     {
-        $refreshToken = RefreshTokenModel::where('id', $tokenId)->first();
+        $refreshToken = RefreshTokenModel::where('_id', $tokenId)->first();
 
         return $refreshToken === null || $refreshToken->revoked;
     }
@@ -37,7 +37,7 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
         $refreshTokenEntity->newModelQuery()->create([
-            'id' => $id = $refreshTokenEntity->getIdentifier(),
+            '_id' => $id = $refreshTokenEntity->getIdentifier(),
             'access_token_id' => $accessTokenId = $refreshTokenEntity->getAccessToken()->getIdentifier(),
             'revoked' => false,
             'expires_at' => $refreshTokenEntity->getExpiryDateTime(),
