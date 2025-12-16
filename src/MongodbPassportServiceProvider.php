@@ -23,6 +23,7 @@ class MongodbPassportServiceProvider extends ServiceProvider
         Passport::useClientModel(Client::class);
         Passport::usePersonalAccessClientModel(PersonalAccessClient::class);
         Passport::useTokenModel(Token::class);
+        Passport::useRefreshTokenModel(RefreshToken::class);
 
         $this->app->bind(PassportRefreshTokenRepository::class, function () {
             return $this->app->make(RefreshTokenRepository::class);

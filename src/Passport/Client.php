@@ -2,9 +2,9 @@
 
 namespace DesignMyNight\Mongodb\Passport;
 
-use Laravel\Passport\Client as BaseClient;
+use Jenssegers\Mongodb\Eloquent\Model;
 
-class Client extends BaseClient
+class Client extends Model
 {
     /**
      * The database table used by the model.
