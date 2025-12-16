@@ -3,6 +3,7 @@
 namespace DesignMyNight\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 
 class Token extends Model
 {
