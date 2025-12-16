@@ -3,9 +3,31 @@
 namespace DesignMyNight\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 
 class Client extends Model
 {
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /**
      * The database table used by the model.
      *
@@ -38,6 +60,7 @@ class Client extends Model
         'personal_access_client' => 'bool',
         'password_client' => 'bool',
         'revoked' => 'bool',
+        'grant_types' => 'array',
     ];
 
     /**
@@ -47,7 +70,7 @@ class Client extends Model
      */
     public function authCodes()
     {
-        return $this->hasMany(AuthCode::class);
+        return $this->hasMany(Passport::authCodeModel(), 'client_id');
     }
 
     /**
@@ -57,7 +80,19 @@ class Client extends Model
      */
     public function tokens()
     {
-        return $this->hasMany(Token::class);
+        return $this->hasMany(Passport::tokenModel(), 'client_id');
+    }
+
+    /**
+     * Get the user that the client belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(
+            config('auth.providers.'.config('auth.guards.api.provider').'.model')
+        );
     }
 
     /**
@@ -88,5 +123,15 @@ class Client extends Model
     public function confidential()
     {
         return ! empty($this->secret);
+    }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string|null
+     */
+    public function getConnectionName()
+    {
+        return config('passport.storage.database.connection') ?? $this->connection;
     }
 }

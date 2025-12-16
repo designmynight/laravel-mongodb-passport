@@ -49,6 +49,7 @@ class Token extends Model
      */
     protected $casts = [
         'revoked' => 'bool',
+        'scopes' => 'array',
     ];
 
     /**

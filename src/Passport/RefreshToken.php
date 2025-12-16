@@ -3,9 +3,17 @@
 namespace DesignMyNight\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 
 class RefreshToken extends Model
 {
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
     /**
      * The database table used by the model.
      *

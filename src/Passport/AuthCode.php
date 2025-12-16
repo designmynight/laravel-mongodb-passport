@@ -3,9 +3,17 @@
 namespace DesignMyNight\Mongodb\Passport;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 
 class AuthCode extends Model
 {
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
     /**
      * The database table used by the model.
      *
@@ -62,11 +70,11 @@ class AuthCode extends Model
     /**
      * Get the client that owns the authentication code.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function client()
     {
-        return $this->hasMany(Client::class);
+        return $this->belongsTo(Passport::clientModel());
     }
 
     /**
