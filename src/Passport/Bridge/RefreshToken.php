@@ -40,7 +40,7 @@ class RefreshToken extends Model implements RefreshTokenEntityInterface
     /**
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = '_id';
 
     /**
      * @var string
