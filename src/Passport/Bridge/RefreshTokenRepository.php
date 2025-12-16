@@ -2,6 +2,7 @@
 
 namespace DesignMyNight\Mongodb\Passport\Bridge;
 
+use DesignMyNight\Mongodb\Passport\RefreshToken as RefreshTokenModel;
 use Laravel\Passport\Bridge\RefreshTokenRepository as BaseRefreshTokenRepository;
 use Laravel\Passport\Events\RefreshTokenCreated;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
@@ -25,10 +26,9 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
      */
     public function isRefreshTokenRevoked($tokenId)
     {
-        $refreshToken = $this->database->table('oauth_refresh_tokens')
-            ->where('id', $tokenId)->first();
+        $refreshToken = RefreshTokenModel::where('id', $tokenId)->first();
 
-        return $refreshToken === null || $refreshToken['revoked'];
+        return $refreshToken === null || $refreshToken->revoked;
     }
 
     /**
