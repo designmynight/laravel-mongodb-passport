@@ -37,7 +37,7 @@ class RefreshTokenRepository extends BaseRefreshTokenRepository
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
         $refreshTokenEntity->newModelQuery()->create([
-            '_id' => $id = $refreshTokenEntity->getIdentifier(),
+            'id' => $id = $refreshTokenEntity->getIdentifier(),
             'access_token_id' => $accessTokenId = $refreshTokenEntity->getAccessToken()->getIdentifier(),
             'revoked' => false,
             'expires_at' => $refreshTokenEntity->getExpiryDateTime(),
