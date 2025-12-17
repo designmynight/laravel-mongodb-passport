@@ -44,6 +44,24 @@ class Client extends Model
     protected $guarded = [];
 
     /**
+     * Bootstrap the model.
+     *
+     * Sets _id from id when creating to ensure Passport client lookups work correctly.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (!empty($model->id) && empty($model->_id)) {
+                $model->_id = $model->id;
+            }
+        });
+    }
+
+    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array

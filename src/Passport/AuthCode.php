@@ -37,6 +37,24 @@ class AuthCode extends Model
     protected $guarded = [];
 
     /**
+     * Bootstrap the model.
+     *
+     * Sets _id from id when creating to ensure Passport auth code lookups work correctly.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (!empty($model->id) && empty($model->_id)) {
+                $model->_id = $model->id;
+            }
+        });
+    }
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
