@@ -2,10 +2,33 @@
 
 namespace DesignMyNight\Mongodb\Passport;
 
-use Laravel\Passport\Client as BaseClient;
+use Illuminate\Support\Facades\Config;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Passport\Passport;
 
-class Client extends BaseClient
+class Client extends Model
 {
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = '_id';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /**
      * The database table used by the model.
      *
@@ -38,6 +61,7 @@ class Client extends BaseClient
         'personal_access_client' => 'bool',
         'password_client' => 'bool',
         'revoked' => 'bool',
+        'grant_types' => 'array',
     ];
 
     /**
@@ -47,7 +71,7 @@ class Client extends BaseClient
      */
     public function authCodes()
     {
-        return $this->hasMany(AuthCode::class);
+        return $this->hasMany(Passport::authCodeModel(), 'client_id');
     }
 
     /**
@@ -57,7 +81,21 @@ class Client extends BaseClient
      */
     public function tokens()
     {
-        return $this->hasMany(Token::class);
+        return $this->hasMany(Passport::tokenModel(), 'client_id');
+    }
+
+    /**
+     * Get the user that the client belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        $provider = Config::get('auth.guards.api.provider');
+
+        return $this->belongsTo(
+            Config::get('auth.providers.'.$provider.'.model')
+        );
     }
 
     /**
@@ -88,5 +126,15 @@ class Client extends BaseClient
     public function confidential()
     {
         return ! empty($this->secret);
+    }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string|null
+     */
+    public function getConnectionName()
+    {
+        return Config::get('passport.storage.database.connection') ?? $this->connection;
     }
 }
