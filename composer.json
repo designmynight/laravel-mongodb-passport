@@ -13,12 +13,12 @@
         "designmynight"
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "nyholm/psr7": "^1.0",
         "lcobucci/jwt": "^4.0",
-        "illuminate/support": "^8.0",
+        "illuminate/support": "^8.0 || ^9.0",
         "jenssegers/mongodb": "^3.8 || ^4.0",
-        "laravel/passport": "^10.0"
+        "laravel/passport": "^10.0 || ^11.0"
     },
     "autoload": {
         "psr-4": {
