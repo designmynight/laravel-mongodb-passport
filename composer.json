@@ -13,12 +13,12 @@
         "designmynight"
     ],
     "require": {
-        "php": ">=7.2",
-        "laminas/laminas-diactoros": "^2.0",
-        "lcobucci/jwt": "3.3.3",
-        "illuminate/support": "^6.0 || ^7.0",
-        "jenssegers/mongodb": "3.6.* || 3.7.* || 4.0.* || 5.0.* || 6.0.*",
-        "laravel/passport": "^8.0 || ^9.0"
+        "php": ">=7.4",
+        "nyholm/psr7": "^1.0",
+        "lcobucci/jwt": "^4.0",
+        "illuminate/support": "^8.0",
+        "jenssegers/mongodb": "^3.8 || ^4.0",
+        "laravel/passport": "^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +45,6 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^9.0"
     }
 }
