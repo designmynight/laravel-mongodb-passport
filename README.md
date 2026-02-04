@@ -1,3 +1,6 @@
+> ## No longer maintained
+> This package is no longer maintained. Recent contributions are part of our own migration to the official Laravel MongoDB package and their recommended approach for using [Passport with MongoDB](https://www.mongodb.com/docs/drivers/php/laravel-mongodb/v4.x/user-authentication/).
+
 Laravel MongoDB Passport
 ===============
 
