@@ -1,12 +1,17 @@
-FROM designmynight/php7.1-cli-mongo
+FROM php:8.1-cli
 
 WORKDIR /opt
 
-RUN apk add --no-cache libpng libpng-dev && docker-php-ext-install gd && apk del libpng-dev
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libzip-dev \
+    unzip \
+    git \
+    && docker-php-ext-install gd zip pcntl
 
-RUN docker-php-ext-install pcntl
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 RUN composer --version
 
